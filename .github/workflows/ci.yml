@@ -20,10 +20,10 @@ jobs:
           pip install pytest
 
       - name: Testes Unitários
-        run: python -m pytest testcalculadora.py
+        run: pytest test/testcalculadora.py
 
       - name: Testes de Integração
-        run: python -m pytest testservico.py
+        run: pytest test/testservico.py
 
       - name: Configurar Node.js
         uses: actions/setup-node@v3
