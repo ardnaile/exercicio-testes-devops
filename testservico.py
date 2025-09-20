@@ -1,5 +1,5 @@
 import pytest
-from servico import cadastrarusuario
+from /src/servico import cadastrarusuario
 
 def testcadastrousuario():
     resultado = cadastrarusuario("João")

@@ -1,5 +1,5 @@
 import pytest
-from calculadora import soma
+from /src/calculadora import soma
 
 def testsomapositivos():
     assert soma(2, 3) == 5
