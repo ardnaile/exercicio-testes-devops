@@ -9,6 +9,7 @@ jobs:
       - name: Checar código
         uses: actions/checkout@v3
 
+      # --- Python ---
       - name: Configurar Python
         uses: actions/setup-python@v4
         with:
@@ -25,13 +26,20 @@ jobs:
       - name: Testes de Integração
         run: pytest testservico.py
 
+      # --- Node.js / Cypress ---
       - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
+      - name: Instalar dependências do sistema para Cypress
+        run: sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+
       - name: Instalar Cypress
         run: npm install cypress --save-dev
+
+      - name: Dar permissão de execução para Cypress
+        run: chmod +x ./node_modules/.bin/cypress
 
       - name: Verificar Cypress
         run: npx cypress verify
@@ -39,7 +47,7 @@ jobs:
       - name: Testes E2E Cypress
         run: npx cypress run
 
+      # --- Deploy simulado ---
       - name: Deploy condicional (simulado)
         if: ${{ success() }}
-        run: |
-          echo "✅ Todos os testes passaram. Deploy simulado concluído!"
+        run: echo "✅ Todos os testes passaram. Deploy simulado concluído!"
