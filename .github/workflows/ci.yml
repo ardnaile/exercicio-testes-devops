@@ -33,6 +33,9 @@ jobs:
       - name: Instalar Cypress
         run: npm install cypress --save-dev
 
+      - name: Verificar Cypress
+        run: npx cypress verify
+
       - name: Testes E2E Cypress
         run: npx cypress run
 
